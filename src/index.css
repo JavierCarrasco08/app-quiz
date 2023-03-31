@@ -1,0 +1,10 @@
+:root {
+  --primary-color-correct: #4ecdc4;
+  --primary-color-incorrect: #ff6b6b;
+  --primary-color-pista: #ffe66d;
+  --primary-color-purple: #666a86;
+  --panel: #f7fff7;
+}
+html {
+  font-family: "Inter", sans-serif;
+}

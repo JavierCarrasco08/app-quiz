@@ -2,7 +2,7 @@
   --primary-color-correct: #4ecdc4;
   --primary-color-incorrect: #ff6b6b;
   --primary-color-pista: #ffe66d;
-  --primary-color-purple: #666a86;
+  --primary-color-purple: #3d405b;
   --panel: #f7fff7;
 }
 html {
@@ -27,6 +27,9 @@ body {
 #root {
   width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-image: url("./assets/images/Fondo-de-la-app-quiz.png");
   background-repeat: no-repeat;
   background-position: center;

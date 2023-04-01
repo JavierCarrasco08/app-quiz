@@ -1,0 +1,27 @@
+.root__select-history {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+}
+
+.root__resume {
+  width: 90%;
+  padding: 1.2rem;
+  border-radius: 1rem;
+  color: var(--primary-color-purple);
+  background-color: var(--panel);
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  -ms-border-radius: 1rem;
+  -o-border-radius: 1rem;
+}
+
+@media screen and (min-width: 1000px) {
+  .root__resume {
+    width: 40%;
+  }
+}

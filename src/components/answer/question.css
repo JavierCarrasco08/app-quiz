@@ -1,0 +1,26 @@
+.root__questions {
+  width: 90%;
+  padding: 1rem;
+  background-color: var(--panel);
+  color: var(--primary-color-purple);
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+}
+.root__question {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+.root__answer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 120px 120px;
+  justify-content: center;
+  gap: 0.2rem;
+}
+.root__label {
+  font-size: 0.7rem;
+}

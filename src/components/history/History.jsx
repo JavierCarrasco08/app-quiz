@@ -4,7 +4,7 @@ export default function SelectHistory({ name, onSelect }) {
   return (
     <button
       className="root__button-history"
-      onPointerDown={() => console.log("SI")}>
+      onPointerDown={() => onSelect(name)}>
       {name}
     </button>
   );

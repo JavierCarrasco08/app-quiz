@@ -18,8 +18,18 @@
   -moz-border-radius: 1rem;
   -ms-border-radius: 1rem;
   -o-border-radius: 1rem;
+  clip-path: polygon(0 50%, 100% 50%, 100% 50%, 0 50%);
+  animation: height 1s linear 1s forwards;
+  -webkit-animation: height 1s linear 1s forwards;
 }
-
+@keyframes height {
+  from {
+    clip-path: polygon(0 50%, 100% 50%, 100% 50%, 0 50%);
+  }
+  to {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
 @media screen and (min-width: 1000px) {
   .root__resume {
     width: 40%;

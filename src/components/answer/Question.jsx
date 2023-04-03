@@ -1,8 +1,9 @@
 import { useState } from "react";
+import Buttons from "../buttons/Buttons";
 import "./question.css";
-export default function Question({ questions }) {
+export default function Question({ questions, onPrev }) {
   const [next, setNext] = useState(0);
-  let question = questions.find((e) => e.id === next);
+  let question = questions[0];
   function handleClickNext() {
     if (next === questions.length - 1) {
       setNext(0);
@@ -20,8 +21,9 @@ export default function Question({ questions }) {
             value={question.a}
             name={question.question}
             id={question.a}
+            className="root__input"
           />
-          {question.a}
+          <p className="root__p">{question.a}</p>
         </label>
         <label htmlFor={question.b} className="root__label">
           <input
@@ -29,8 +31,9 @@ export default function Question({ questions }) {
             value={question.b}
             name={question.question}
             id={question.b}
+            className="root__input"
           />
-          {question.b}
+          <p className="root__p">{question.b}</p>
         </label>
         {question.c && (
           <label htmlFor={question.c} className="root__label">
@@ -39,8 +42,9 @@ export default function Question({ questions }) {
               value={question.c}
               name={question.question}
               id={question.c}
+              className="root__input"
             />
-            {question.c}
+            <p className="root__p">{question.c}</p>
           </label>
         )}
         {question.d && (
@@ -50,17 +54,18 @@ export default function Question({ questions }) {
               value={question.d}
               name={question.question}
               id={question.d}
+              className="root__input"
             />
-            {question.d}
+            <p className="root__p">{question.d}</p>
           </label>
         )}
       </section>
-      <div className="root__buttons">
-        <button className="root__prev">Exit</button>
-        <button className="root__next" onPointerDown={handleClickNext}>
-          Next
-        </button>
-      </div>
+      <Buttons
+        one={"Exit"}
+        two={"Next"}
+        onPrev={onPrev}
+        onClick={handleClickNext}
+      />
     </section>
   );
 }

@@ -3,7 +3,8 @@ import Buttons from "../buttons/Buttons";
 import "./question.css";
 export default function Question({ questions, onPrev }) {
   const [next, setNext] = useState(0);
-  let question = questions[0];
+  const [isNext, SetIsNext] = useState(false);
+  let question = questions[next];
   function handleClickNext() {
     if (next === questions.length - 1) {
       setNext(0);

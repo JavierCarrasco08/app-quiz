@@ -1,72 +1,55 @@
-import { useState } from "react";
-import Buttons from "../buttons/Buttons";
+import { useState, useRef } from "react";
 import "./question.css";
-export default function Question({ questions, onPrev }) {
+export default function Question({ questions }) {
   const [next, setNext] = useState(0);
-  const [isNext, SetIsNext] = useState(false);
+  const [isNext, setIsNext] = useState(false);
+  const trueRef = useRef(0);
   let question = questions[next];
   function handleClickNext() {
+    setIsNext(!isNext);
     if (next === questions.length - 1) {
       setNext(0);
     } else {
       setNext(next + 1);
     }
   }
+  function handleClickSee(num) {
+    trueRef.current = trueRef.current + num;
+  }
   return (
-    <section className="root__questions">
+    <section className="root__questions" key={question.id}>
       <h2 className="root__question">{question.question}</h2>
       <section className="root__answer">
-        <label htmlFor={question.a} className="root__label">
-          <input
-            type="radio"
-            value={question.a}
-            name={question.question}
-            id={question.a}
-            className="root__input"
-          />
-          <p className="root__p">{question.a}</p>
-        </label>
-        <label htmlFor={question.b} className="root__label">
-          <input
-            type="radio"
-            value={question.b}
-            name={question.question}
-            id={question.b}
-            className="root__input"
-          />
-          <p className="root__p">{question.b}</p>
-        </label>
-        {question.c && (
-          <label htmlFor={question.c} className="root__label">
+        {question.answer.map((inp, index) => (
+          <label htmlFor={inp} key={index} className="root__label">
             <input
+              id={inp}
+              value={inp}
               type="radio"
-              value={question.c}
               name={question.question}
-              id={question.c}
+              onChange={() => {
+                console.log("SI");
+              }}
               className="root__input"
             />
-            <p className="root__p">{question.c}</p>
+            <p className="root__p">{inp}</p>
           </label>
-        )}
-        {question.d && (
-          <label htmlFor={question.d} className="root__label">
-            <input
-              type="radio"
-              value={question.d}
-              name={question.question}
-              id={question.d}
-              className="root__input"
-            />
-            <p className="root__p">{question.d}</p>
-          </label>
-        )}
+        ))}
       </section>
-      <Buttons
-        one={"Exit"}
-        two={"Next"}
-        onPrev={onPrev}
-        onClick={handleClickNext}
-      />
+      <div className="root__div">
+        <button
+          className="root__see"
+          onPointerDown={
+            isNext
+              ? handleClickNext
+              : () => {
+                  handleClickSee(1);
+                  setIsNext(!isNext);
+                }
+          }>
+          {isNext ? "Next" : "See answer"}
+        </button>
+      </div>
     </section>
   );
 }

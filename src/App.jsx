@@ -11,17 +11,6 @@ function App() {
   function handleClickSelectHistory(name) {
     setQuestions(name);
   }
-  if (true) {
-    return (
-      <Panel
-        correct={{
-          done: false,
-          id: null,
-          num: 4,
-        }}
-      />
-    );
-  }
   if (questions === null) {
     return (
       <section className="root__select-history">
@@ -55,6 +44,9 @@ function App() {
         End={(correct) => setQuestions(correct)}
       />
     );
+  }
+  if (questions.num) {
+    return <Panel onPrev={() => setQuestions(null)} correct={questions.num} />;
   }
 }
 

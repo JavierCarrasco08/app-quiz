@@ -1,10 +1,10 @@
 import gitHub from "./../../assets/svgs/github.svg";
 import instagram from "./../../assets/svgs/instagram.svg";
+import CircularProgress from "@mui/material/CircularProgress";
 import "./panel.css";
-import Buttons from "../buttons/Buttons";
 
-export default function Panel({ correct }) {
-  let num = correct.num * 20;
+export default function Panel({ correct, onPrev }) {
+  let num = correct * 20;
   return (
     <section className="root__end">
       <header className="root__hero">
@@ -32,16 +32,22 @@ export default function Panel({ correct }) {
         </nav>
       </header>
       <section className="root__panel">
-        <div>
+        <div className="root__sec">
           <h1 className="root__Congratulation">Congratulations</h1>
           <p className="root__paragraph">
             Keep improving and thank you very much for giving me some of your
             time.
           </p>
         </div>
+        <div>
+          <p>Completed: {num}% of the total</p>
+          <CircularProgress variant="determinate" value={num} color="inherit" />
+        </div>
       </section>
       <div className="root__buttons">
-        <button className="root__prev">Exit</button>
+        <button className="root__prev" onPointerDown={onPrev}>
+          Exit
+        </button>
       </div>
     </section>
   );

@@ -42,6 +42,9 @@
 .root__Congratulation {
   margin-bottom: 0.25rem;
 }
+.root__sec {
+  margin-bottom: 1rem;
+}
 @media screen and (min-width: 370px) {
   .root__Congratulation {
     font-size: 1.8rem;

@@ -4,11 +4,23 @@ import SelectHistory from "./components/history/History";
 import ResumeHistory from "./components/resume/Resume-history";
 import { useState } from "react";
 import Question from "./components/answer/Question";
+import Panel from "./components/panel/Panel";
 
 function App() {
   const [questions, setQuestions] = useState(null);
   function handleClickSelectHistory(name) {
     setQuestions(name);
+  }
+  if (true) {
+    return (
+      <Panel
+        correct={{
+          done: false,
+          id: null,
+          num: 4,
+        }}
+      />
+    );
   }
   if (questions === null) {
     return (
@@ -30,13 +42,19 @@ function App() {
           name={resume.name}
           resume={resume.history}
           onPrev={() => setQuestions(null)}
-          onNext={() => setQuestions(allQuestions[questions])}
+          onNext={() => setQuestions([allQuestions[questions], questions])}
         />
       </article>
     );
   }
   if (questions instanceof Array) {
-    return <Question questions={questions} onPrev={() => setQuestions(null)} />;
+    return (
+      <Question
+        questions={questions[0]}
+        history={history[questions[1]]}
+        End={(correct) => setQuestions(correct)}
+      />
+    );
   }
 }
 

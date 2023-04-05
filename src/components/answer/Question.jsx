@@ -1,20 +1,47 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import "./question.css";
-export default function Question({ questions }) {
+export default function Question({ questions, history, End }) {
   const [next, setNext] = useState(0);
+  const [correct, setCorrect] = useState({
+    num: 0,
+    id: null,
+    done: false,
+  });
+  let isCorrect = null;
   const [isNext, setIsNext] = useState(false);
-  const trueRef = useRef(0);
   let question = questions[next];
   function handleClickNext() {
     setIsNext(!isNext);
     if (next === questions.length - 1) {
-      setNext(0);
+      End(correct);
     } else {
       setNext(next + 1);
+      setCorrect({
+        ...correct,
+        done: false,
+        id: null,
+      });
     }
   }
-  function handleClickSee(num) {
-    trueRef.current = trueRef.current + num;
+  function handleOnChange(text, id) {
+    if (history.history.includes(text)) {
+      setCorrect({
+        num: correct.num + 1,
+        done: true,
+        id: id,
+      });
+    } else {
+      setCorrect({
+        ...correct,
+        done: false,
+        id: id,
+      });
+    }
+  }
+  if (correct.done) {
+    isCorrect = "correct";
+  } else {
+    isCorrect = "incorrect";
   }
   return (
     <section className="root__questions" key={question.id}>
@@ -27,12 +54,18 @@ export default function Question({ questions }) {
               value={inp}
               type="radio"
               name={question.question}
-              onChange={() => {
-                console.log("SI");
+              onChange={(e) => {
+                handleOnChange(e.target.value, index);
               }}
               className="root__input"
             />
-            <p className="root__p">{inp}</p>
+            {isNext ? (
+              <p className={`root__p ${correct.id === index && isCorrect}`}>
+                {inp}
+              </p>
+            ) : (
+              <p className="root__p">{inp}</p>
+            )}
           </label>
         ))}
       </section>
@@ -43,7 +76,6 @@ export default function Question({ questions }) {
             isNext
               ? handleClickNext
               : () => {
-                  handleClickSee(1);
                   setIsNext(!isNext);
                 }
           }>

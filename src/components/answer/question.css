@@ -150,3 +150,10 @@
     opacity: 0.7;
   }
 }
+
+.correct {
+  color: var(--primary-color-correct);
+}
+.incorrect {
+  color: var(--primary-color-incorrect);
+}
